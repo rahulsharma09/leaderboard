@@ -1,0 +1,9 @@
+.user-profile{
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: space-between;
+}
+.user-profile>h6{
+    margin-bottom: 0px;
+}
