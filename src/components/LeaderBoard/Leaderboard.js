@@ -2,16 +2,32 @@ import React from "react";
 import "./Leaderboard.css";
 import { useState } from "react";
 import LeadeBoarCard from "./LeadeBoarCard";
+import ReactPaginate from "react-paginate";
 
-const Leaderboard = ({ userData }) => {
+const Leaderboard = ({ userData, itemsPerPage }) => {
   const [searchUser, setSearchUser] = useState("");
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + itemsPerPage;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentItems = userData.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(userData.length / itemsPerPage);
+
+  // Invoke when user click to request another page.
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % userData.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
   const handleUserSearch = (e) => {
     console.log(e.target.value);
     setSearchUser(e.target.value);
   };
-  console.log("re-render");
+
   return (
     <div className="container mt-5">
+      <h2 className="text-center">Leaderboard</h2>
       <input
         type="text"
         placeholder="User"
@@ -28,34 +44,40 @@ const Leaderboard = ({ userData }) => {
           </tr>
         </thead>
         <tbody>
-          {searchUser == "" &&
-            userData.map((user, index) => {
-              return <LeadeBoarCard user={user} />;
-            })}
+          {searchUser == "" && (
+            <>
+              <LeadeBoarCard user={currentItems} />
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                containerClassName="pagination"
+                activeClassName="active"
+              />
+            </>
+          )}
           {searchUser != "" &&
             userData.map((user) => {
               if (user.name.includes(searchUser) || user.name == searchUser) {
-                return <LeadeBoarCard user={user} />;
+                let arr = [];
+                arr.push(user);
+                return <LeadeBoarCard user={arr} />;
               }
             })}
         </tbody>
       </table>
-
-      {/* {userData.map((user, index) => {
-        return (
-          <div key={index}>
-            
-            <div className="name-profile">
-              <div>
-                <img className="profile-pic" src={user.profilePicture} alt="" />
-              </div>
-              <div>
-                <h4>{user.name}</h4>
-              </div>
-            </div>
-          </div>
-        );
-      })} */}
     </div>
   );
 };

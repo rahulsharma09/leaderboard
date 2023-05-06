@@ -5,7 +5,7 @@ import { userData } from './data'
 const App = () => {
   return (
     <div>
-      <Leaderboard userData={userData} />
+      <Leaderboard userData={userData} itemsPerPage={2}  />
     </div>
   )
 }
