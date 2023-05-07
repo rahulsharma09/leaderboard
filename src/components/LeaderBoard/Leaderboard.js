@@ -95,7 +95,7 @@ const Leaderboard = ({ userData, itemsPerPage }) => {
 
           {searchUser.length != 0 &&
             userData.map((user) => {
-              if (user.name.includes(searchUser) || user.name == searchUser) {
+              if (user.name.toLowerCase().includes(searchUser.toLowerCase()) || user.name == searchUser) {
                 let arr = [];
                 arr.push(user);
                 return <LeadeBoarCard user={arr} />;
@@ -105,7 +105,7 @@ const Leaderboard = ({ userData, itemsPerPage }) => {
           {searchCountry.length != 0 &&
             userData.map((user) => {
               if (
-                user.country.includes(searchCountry) ||
+                user.country.toLowerCase().includes(searchCountry.toLowerCase()) ||
                 user.country == searchCountry
               ) {
                 let arr = [];
