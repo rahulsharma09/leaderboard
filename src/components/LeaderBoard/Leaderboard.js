@@ -3,16 +3,19 @@ import "./Leaderboard.css";
 import { useState } from "react";
 import LeadeBoarCard from "./LeadeBoarCard";
 import ReactPaginate from "react-paginate";
+import SearchIcon from "@mui/icons-material/Search";
+import Input from "@mui/material/Input";
+import InputAdornment from "@mui/material/InputAdornment";
+
 
 const Leaderboard = ({ userData, itemsPerPage }) => {
   const [searchUser, setSearchUser] = useState("");
+  const [searchCountry, setSearchCountry] = useState("");
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = userData.slice(itemOffset, endOffset);
+  let currentItems = userData.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(userData.length / itemsPerPage);
 
-  // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % userData.length;
     console.log(
@@ -21,39 +24,60 @@ const Leaderboard = ({ userData, itemsPerPage }) => {
     setItemOffset(newOffset);
   };
   const handleUserSearch = (e) => {
-    console.log(e.target.value);
     setSearchUser(e.target.value);
   };
+
+  const handleCountry = (e) => {
+    setSearchCountry(e.target.value);
+  };
+
+  console.log("re-render");
 
   return (
     <div className="container mt-5">
       <h2 className="text-center">Leaderboard</h2>
-      <input
-        type="text"
-        placeholder="User"
-        onChange={(e) => handleUserSearch(e)}
-        className="form-control m-4"
-      />
-      <table class="table">
+      <div className="search__section mb-4">
+        <Input
+          id="input-with-icon-adornment"
+          placeholder="User"
+          onChange={(e) => handleUserSearch(e)}
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+        />
+        <Input
+          id="input-with-icon-adornment"
+          placeholder="Country"
+          onChange={(e) => handleCountry(e)}
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+        />
+      </div>
+      <table class="table table-striped bg-light">
         <thead>
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Rating</th>
             <th scope="col">Country</th>
-            <th scope="col">Rating</th>
+            <th scope="col">Username</th>
           </tr>
         </thead>
         <tbody>
-          {searchUser == "" && (
+          {searchUser == "" && searchCountry == "" && (
             <>
               <LeadeBoarCard user={currentItems} />
               <ReactPaginate
                 breakLabel="..."
-                nextLabel="next >"
+                nextLabel="NEXT >"
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={5}
                 pageCount={pageCount}
-                previousLabel="< previous"
+                previousLabel="< PREV"
                 renderOnZeroPageCount={null}
                 pageClassName="page-item"
                 pageLinkClassName="page-link"
@@ -68,9 +92,22 @@ const Leaderboard = ({ userData, itemsPerPage }) => {
               />
             </>
           )}
-          {searchUser != "" &&
+
+          {searchUser.length != 0 &&
             userData.map((user) => {
               if (user.name.includes(searchUser) || user.name == searchUser) {
+                let arr = [];
+                arr.push(user);
+                return <LeadeBoarCard user={arr} />;
+              }
+            })}
+
+          {searchCountry.length != 0 &&
+            userData.map((user) => {
+              if (
+                user.country.includes(searchCountry) ||
+                user.country == searchCountry
+              ) {
                 let arr = [];
                 arr.push(user);
                 return <LeadeBoarCard user={arr} />;

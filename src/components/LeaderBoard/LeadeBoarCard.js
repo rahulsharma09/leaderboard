@@ -1,6 +1,7 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
+import { Link } from "react-router-dom";
 
 const LeadeBoarCard = ({ user }) => {
   console.log("User data: ", user);
@@ -13,18 +14,21 @@ const LeadeBoarCard = ({ user }) => {
               <td>
                 <div className="user-profile">
                   <Avatar alt="" src={data.profilePicture} />
-                  <h6>{data.name}</h6>
+                  <Link to={`user-details/${data.id}`}><h6>{data.name}</h6></Link>
                 </div>
               </td>
               <td>{data.rating}</td>
               <td>
-                <div className="user-profile">
+                <div className="">
                   <Tooltip title={data.country}>
-                    <Avatar alt="" src={data.countryFlag} />
+                    <div className="country">
+                      <Avatar alt="" src={data.countryFlag} />
+                      <p>{data.country}</p>
+                    </div>
                   </Tooltip>
                 </div>
               </td>
-              <td>{data.rating}</td>
+              <td>{data.username}</td>
             </tr>
           </>
         );

@@ -1,5 +1,6 @@
 export const userData = [
   {
+    id: 1,
     name: "Dejon Fay",
     profilePicture: "https://api.dicebear.com/6.x/bottts/svg?seed=Baby",
     username: "@dejonfay",
@@ -10,8 +11,14 @@ export const userData = [
     profession: "Frontend Develeoper",
     problemsSolved: 430,
     solutionsSubmittes: 680,
+    practiceBadges: ["Data Structures", "Algorithm", "Statistics"],
+    contestRating: [
+      1610, 1687, 1715, 1598, 1688, 1289, 2549, 6459, 5151, 1221, 2165, 3456,
+      1254, 1258, 6598, 5164, 2120,
+    ],
   },
   {
+    id: 2,
     name: "Bart Jast",
     profilePicture: "https://api.dicebear.com/6.x/bottts/svg?seed=Bandit",
     username: "@bartjast",
@@ -22,8 +29,14 @@ export const userData = [
     profession: "Software Engineer",
     problemsSolved: 540,
     solutionsSubmittes: 780,
+    practiceBadges: ["Data Structures", "Javascript", "Reactjs"],
+    contestRating: [
+      1120, 1687, 1715, 1598, 1688, 1289, 2549, 6459, 5151, 1221, 2165, 3456,
+      1254, 1258, 6598, 5164, 2120,
+    ],
   },
   {
+    id: 3,
     name: "Ida West",
     profilePicture: "https://api.dicebear.com/6.x/bottts/svg?seed=Jasper",
     username: "@idavest",
@@ -34,8 +47,10 @@ export const userData = [
     profession: "Business Analyst",
     problemsSolved: 480,
     solutionsSubmittes: 1200,
+    practiceBadges: ["Data Structures", "Math", "Java"],
   },
   {
+    id: 4,
     name: "Gino Wolf",
     profilePicture: "https://api.dicebear.com/6.x/bottts/svg?seed=Leo",
     username: "@ginowolf",
@@ -46,8 +61,15 @@ export const userData = [
     profession: "Software Engineer",
     problemsSolved: 680,
     solutionsSubmittes: 980,
+    practiceBadges: [
+      "Frontend Development",
+      "Responsive Web Design",
+      "Reactjs",
+      "Javascript",
+    ],
   },
   {
+    id: 5,
     name: "Chad Yost",
     profilePicture: "https://api.dicebear.com/6.x/bottts/svg?seed=Bella",
     username: "@chadyost",
@@ -118,5 +140,5 @@ export const userData = [
     profession: "Backend Developer",
     problemsSolved: 980,
     solutionsSubmittes: 1358,
-  }
+  },
 ];

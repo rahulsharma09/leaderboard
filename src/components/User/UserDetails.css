@@ -1,0 +1,58 @@
+.profile{
+    width: 60%;
+    border-radius: 100%;
+    border: 1px solid grey;
+    margin: auto;
+    display: flex;
+}
+.custom-card{
+    background-color: white;
+    padding: 20px;
+    width: 90%;
+    border-radius: 7px;
+}
+.level{
+    border-radius: 10px;
+    border: 1px dashed green;
+    width: 30%;
+    margin: auto;
+}
+.stats{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.stats div p{
+    margin-bottom: 0px;
+}
+.stats div{
+    width: 30%;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    text-align: center;
+    padding: 10px;
+}
+.badges{
+    display: flex;
+    justify-content: space-evenly;
+}
+@media only screen and (max-width: 500px){
+    .custom-card{
+        width: 95%;
+        margin-top: 30px;
+    }
+    .user-section{
+        margin: 10px!important;
+    }
+    .level{
+        width: 100%;
+    }
+    .stats{
+        flex-direction: column;
+    }
+    .stats div{
+        width: 90%;
+        margin: auto;
+        margin-bottom: 20px!important;
+        border-radius: 6px;
+    }
+}

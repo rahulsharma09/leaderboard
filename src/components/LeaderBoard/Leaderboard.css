@@ -7,6 +7,34 @@
 .user-profile>h6{
     margin-bottom: 0px;
 }
+.input__form{
+    align-items: flex-end;
+    display: flex;
+}
+.country{
+    display: flex;
+    align-items: center;
+}
+.country>p{
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
 .pagination{
     margin-top:5%;
+}
+.sort__filter{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.sort__filter>p{
+    margin-right: 20px;
+}
+.search__section{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.country__search{
+    width: 30%;
 }
